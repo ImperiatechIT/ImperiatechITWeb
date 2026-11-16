@@ -1,0 +1,64 @@
+<header class="fixed inset-x-0 top-0 z-50 border-b border-brand-primary/10 bg-white/90 backdrop-blur-md">
+  <nav class="mx-auto flex h-24 max-w-7xl items-center justify-between px-6 lg:px-8" aria-label="Main navigation">
+    <a routerLink="/" (click)="closeMenu()" class="flex items-center" aria-label="ImperiaTech IT home">
+      <img src="logo-horizontal.png" alt="ImperiaTech IT" class="h-14 w-auto" />
+    </a>
+
+    <ul class="hidden items-center gap-8 md:flex">
+      @for (link of navLinks; track link.fragment) {
+        <li>
+          <a routerLink="/" [fragment]="link.fragment" class="text-sm font-semibold text-brand-ink/75 transition hover:text-brand-primary">{{ link.label }}</a>
+        </li>
+      }
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <a
+        routerLink="/"
+        fragment="contact"
+        class="hidden items-center gap-2 rounded-full bg-gradient-to-r from-brand-primary to-brand-secondary px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-brand-primary/25 transition hover:-translate-y-0.5 hover:shadow-lg md:inline-flex"
+      >
+        Contact Us
+      </a>
+      <button
+        type="button"
+        class="inline-flex h-11 w-11 items-center justify-center rounded-xl text-brand-ink transition hover:bg-brand-tertiary md:hidden"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="mobile-menu"
+        aria-label="Toggle navigation menu"
+      >
+        <app-icon [name]="menuOpen() ? 'close' : 'menu'" class="h-6 w-6" />
+      </button>
+    </div>
+  </nav>
+
+  @if (menuOpen()) {
+    <div id="mobile-menu" class="border-t border-brand-primary/10 bg-white px-6 pb-6 md:hidden">
+      <ul class="flex flex-col gap-1 pt-2">
+        @for (link of navLinks; track link.fragment) {
+          <li>
+            <a
+              routerLink="/"
+              [fragment]="link.fragment"
+              (click)="closeMenu()"
+              class="block rounded-lg px-3 py-3 text-base font-semibold text-brand-ink transition hover:bg-brand-tertiary"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        }
+        <li class="pt-3">
+          <a
+            routerLink="/"
+            fragment="contact"
+            (click)="closeMenu()"
+            class="flex items-center justify-center rounded-full bg-gradient-to-r from-brand-primary to-brand-secondary px-5 py-3 text-base font-semibold text-white"
+          >
+            Contact Us
+          </a>
+        </li>
+      </ul>
+    </div>
+  }
+</header>

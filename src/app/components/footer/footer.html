@@ -1,0 +1,38 @@
+<footer class="bg-brand-ink text-white">
+  <div class="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-3 lg:px-8">
+    <div>
+      <img src="logo-horizontal-footer.png" alt="ImperiaTech IT" class="h-14 w-auto" />
+      <p class="mt-5 max-w-xs text-sm leading-relaxed text-white/60">
+        Your intellectual tech partner. Expand your business, expand your technology reach.
+      </p>
+    </div>
+
+    <nav aria-label="Footer sections">
+      <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-teal">Explore</h3>
+      <ul class="mt-5 flex flex-col gap-3">
+        @for (link of sectionLinks; track link.fragment) {
+          <li>
+            <a routerLink="/" [fragment]="link.fragment" class="text-sm text-white/70 transition hover:text-white">{{ link.label }}</a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <nav aria-label="Legal">
+      <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-teal">Legal</h3>
+      <ul class="mt-5 flex flex-col gap-3">
+        @for (link of legalLinks; track link.path) {
+          <li>
+            <a [routerLink]="link.path" class="text-sm text-white/70 transition hover:text-white">{{ link.label }}</a>
+          </li>
+        }
+      </ul>
+    </nav>
+  </div>
+
+  <div class="border-t border-white/10">
+    <p class="mx-auto max-w-7xl px-6 py-6 text-xs text-white/50 lg:px-8">
+      &copy; {{ year }} ImperiaTech IT. All trademarks are the property of their respective owners.
+    </p>
+  </div>
+</footer>
